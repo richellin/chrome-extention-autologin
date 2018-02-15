@@ -1,5 +1,4 @@
-var config = chrome.extension.getBackgroundPage().config;
-var completeList = config.completeList;
+var completeList = [];
 var inputs = [
     {
       id: 'id',
@@ -109,12 +108,14 @@ function createForm() {
 
 // Initalize the options.
 document.addEventListener('DOMContentLoaded', function () {
+  chrome.runtime.sendMessage({fn: "getConfig"}, function(response) {
+    completeList = response.completeList;
+    createForm();
 
-  createForm();
+    // getStorage
+    getStorageDatas();
 
-  // getStorage
-  getStorageDatas();
-
-  // addEventListeners
-  addEventListeners();
+    // addEventListeners
+    addEventListeners();
+  });
 });

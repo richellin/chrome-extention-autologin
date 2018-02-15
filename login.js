@@ -68,8 +68,7 @@ function undefined2Defulat(value, defualt) {
 }
 
 chrome.runtime.sendMessage({fn: "getConfig"}, function(response) {
-  var config = response;
-  var completeList = config.completeList;
+  var completeList = response.completeList;
   var matchFlg = false;
   chrome.storage.sync.get(function (data) {
     for (var i = 0; i < completeList.length; i++) {
@@ -77,7 +76,7 @@ chrome.runtime.sendMessage({fn: "getConfig"}, function(response) {
 
       if (item.url.indexOf(`${window.location.hostname}:${window.location.port}`) !== -1) {
         matchFlg = true;
-      } else if ((window.location.port  === 80 || window.location.port  === 443) && item.url.indexOf(`${window.location.hostname}`) !== -1) {
+      } else if ((window.location.port  === '') && item.url.indexOf(`${window.location.hostname}`) !== -1) {
         matchFlg = true;
       }
 

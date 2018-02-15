@@ -215,7 +215,7 @@ document.addEventListener('DOMContentLoaded', function () {
   chrome.runtime.sendMessage({fn: "getConfig"}, function(response) {
     completeList = response.completeList;
     getVersion();
-    completeList = completeList.sort(compareByName);
+    // completeList = completeList.sort(compareByName);
 
     chrome.storage.sync.get(function (data) {
       document.querySelector('#search').value = data.filter !== undefined ? data.filter : '';

@@ -1,0 +1,10 @@
+{
+    "completeList": [
+        {
+            "uid": "uid",
+            "name": "Name",
+            "url": "https://xxx.xxx",
+            "icon": {"url": "https://xxx.xxx/favicon.ico"}
+        }
+    ]
+}

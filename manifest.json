@@ -1,0 +1,35 @@
+{
+  "name": "AutoLogin Launcher",
+  "description": "Get access to your pages in a browser action",
+  "version": "1.0.0",
+  "manifest_version": 2,
+  "permissions": ["management"],
+  "browser_action": {
+    "default_icon": "browser_action_icon.png",
+    "default_title": "AutoLogin Launcher",
+    "default_popup": "popup.html"
+  },
+  "icons": {
+    "48": "icon.png"
+  },
+  "options_page": "options.html",
+  "content_scripts": [
+      {
+        "matches": [
+            "https://*/*",
+            "http://*/*"
+        ],
+        "js": ["login.js"]
+      }
+  ],
+  "background": {
+    "scripts": ["background.js"]
+  },
+  "web_accessible_resources": [
+      "config.json"
+  ],
+  "permissions": [
+    "activeTab",
+    "storage"
+  ]
+}

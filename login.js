@@ -2,11 +2,13 @@
 var ids = [
   'username',
   'login_id',
+  'log',
 ];
 
 // this is login ids, names of pw
 var pws = [
   'password',
+  'pwd',
 ];
 
 // this is login ids, names of button
@@ -47,17 +49,32 @@ function adminLogin(username, password, auto) {
 }
 
 function autoLogin() {
-    var button;
-    if (document.getElementsByTagName('button')[0].type === "submit") {
-      submit = document.getElementsByTagName('button')[0];
-    } else if (document.getElementsByTagName('input')[0].type === "submit") {
-      submit = document.getElementsByTagName('input')[0];
+    var submit = null;
+    var types = ['input', 'button'];
+
+    for (var t = 0; t < types.length; t++) {
+      var length = document.getElementsByTagName(types[t]).length;
+      length = length <= 10 ? length : 10;
+      for (var i = 0; i < length; i++) {
+        if (document.getElementsByTagName(types[t])[i].type === "submit") {
+          submit = document.getElementsByTagName(types[t])[i];
+          break;
+        }
+      }
+
+      if (submit) {
+        break;
+      }
     }
 
     if (submit) {
       for (var i = 0; i < buttons.length; i++) {
         if (submit.innerHTML.indexOf(buttons[i]) !== -1) {
           submit.click();
+          break;
+        } else if (submit.value.indexOf(buttons[i]) !== -1) {
+          submit.click();
+          break;
         }
       }
     }
@@ -88,7 +105,7 @@ chrome.runtime.sendMessage({fn: "getConfig"}, function(response) {
         findInput(ids, id);
         findInput(pws, pw);
 
-        if(auto) {
+        if(auto){
           autoLogin();
         }
         break;

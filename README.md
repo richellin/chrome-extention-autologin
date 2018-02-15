@@ -36,3 +36,6 @@ Calls
 * [management.launchApp](https://developer.chrome.com/extensions/management#method-launchApp)
 * [tabs.create](https://developer.chrome.com/extensions/tabs#method-create)
 * [storage.sync](https://developer.chrome.com/apps/storage#property-sync)
+
+# License
+Content is licensed under the [MIT License](/LICENSE).
